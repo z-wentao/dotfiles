@@ -9,6 +9,8 @@ iterm2/
 raycast/
 neofetch/
 nvim.bak/
+git/
+zathura/
 
 # runtime files
 *.log
