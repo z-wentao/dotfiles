@@ -1,0 +1,7 @@
+[font]
+size = 20.0
+
+[window]
+decorations = "None"
+padding = { x = 12, y = 12 }
+position = { x = 294, y = 201 }

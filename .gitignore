@@ -1,0 +1,17 @@
+# app-generated, not config
+cagent/
+envman/
+gh/
+github-copilot/
+grammarly-languageserver/
+htop/
+iterm2/
+raycast/
+neofetch/
+nvim.bak/
+
+# runtime files
+*.log
+*.swp
+*.bak
+.DS_Store
