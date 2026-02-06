@@ -76,7 +76,7 @@ $yabai -m rule --add app="^iStat"              sticky=on manage=off
 $yabai -m rule --add app="^System Preferences"  manage=off
 $yabai -m rule --add app="^Spotlight$"           manage=off
 $yabai -m rule --add app="^Dictionary$"          manage=off
-$yabai -m rule --add app="^alacritty$"          manage=off sticky=on
+$yabai -m rule --add app="^alacritty$"          manage=off
 
 # ========== Window Rules: App-to-Space ==========
 

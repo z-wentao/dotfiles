@@ -22,18 +22,19 @@ alt - space : /opt/homebrew/bin/yabai -m window --toggle float
 alt - return : open -a iTerm
 shift + alt - return : /opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen
 
-# ========== Focus Space (alt + number) ==========
+# ========== Focus Space / Tmux Window (alt + number) ==========
+# iTerm2 focused -> tmux window; otherwise -> yabai space
 
-alt - 1 : /opt/homebrew/bin/yabai -m space --focus 1
-alt - 2 : /opt/homebrew/bin/yabai -m space --focus 2
-alt - 3 : /opt/homebrew/bin/yabai -m space --focus 3
-alt - 4 : /opt/homebrew/bin/yabai -m space --focus 4
-alt - 5 : /opt/homebrew/bin/yabai -m space --focus 5
-alt - 6 : /opt/homebrew/bin/yabai -m space --focus 6
-alt - 7 : /opt/homebrew/bin/yabai -m space --focus 7
-alt - 8 : /opt/homebrew/bin/yabai -m space --focus 8
-alt - 9 : /opt/homebrew/bin/yabai -m space --focus 9
-alt - 0 : /opt/homebrew/bin/yabai -m space --focus 10
+alt - 1 : ~/.config/skhd/scripts/smart_focus.sh 1
+alt - 2 : ~/.config/skhd/scripts/smart_focus.sh 2
+alt - 3 : ~/.config/skhd/scripts/smart_focus.sh 3
+alt - 4 : ~/.config/skhd/scripts/smart_focus.sh 4
+alt - 5 : ~/.config/skhd/scripts/smart_focus.sh 5
+alt - 6 : ~/.config/skhd/scripts/smart_focus.sh 6
+alt - 7 : ~/.config/skhd/scripts/smart_focus.sh 7
+alt - 8 : ~/.config/skhd/scripts/smart_focus.sh 8
+alt - 9 : ~/.config/skhd/scripts/smart_focus.sh 9
+alt - 0 : ~/.config/skhd/scripts/smart_focus.sh 10
 
 # ========== Move Window to Space (shift + alt + number) ==========
 
@@ -54,6 +55,14 @@ shift + alt - c : open -a Safari; /opt/homebrew/bin/yabai -m space --focus 3
 shift + alt - o : open -a Claude; /opt/homebrew/bin/yabai -m space --focus 8
 alt - n : F="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/notes/$(date +\%Y-\%m-\%d).md"; \
           test -f "$F" || printf "# $(date +\%Y-\%m-\%d)\n\n" > "$F"; \
-          /opt/homebrew/bin/alacritty --title QuickNote -o "window.dimensions={columns=100,lines=32}" -e nvim -n -c "normal G" -c "nnoremap <silent> <Esc> :wq<CR>" -c startinsert! "$F"
+          d=$(/opt/homebrew/bin/yabai -m query --displays --display | jq '.frame'); \
+          dx=$(echo $d | jq -r '.x | floor'); dy=$(echo $d | jq -r '.y | floor'); \
+          dw=$(echo $d | jq -r '.w | floor'); dh=$(echo $d | jq -r '.h | floor'); \
+          wx=882; wh=554; \
+          px=$(( dx + (dw - wx) / 2 )); py=$(( dy + (dh - wh) / 2 + 300 )); \
+          /opt/homebrew/bin/alacritty --title QuickNote \
+            -o "window.dimensions={columns=100,lines=32}" \
+            -o "window.position={x=$px,y=$py}" \
+            -e nvim -n -c "normal G" -c "nnoremap <silent> <Esc> :wq<CR>" -c startinsert! "$F"
 shift + alt - m : osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
-alt - y : /opt/homebrew/bin/yabai --restart-service
+shift + alt - y : /opt/homebrew/bin/yabai --restart-service
