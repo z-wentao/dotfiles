@@ -18,7 +18,7 @@ alt - q : /opt/homebrew/bin/yabai -m window --close
 alt - w : /opt/homebrew/bin/yabai -m window --toggle topmost
 alt - f : /opt/homebrew/bin/yabai -m space --layout bsp
 alt - m : /opt/homebrew/bin/yabai -m space --layout stack
-alt - space : /opt/homebrew/bin/yabai -m window --toggle float
+shift + alt - space : /opt/homebrew/bin/yabai -m window --toggle float
 alt - return : open -a iTerm
 shift + alt - return : /opt/homebrew/bin/yabai -m window --toggle zoom-fullscreen
 
@@ -64,5 +64,7 @@ alt - n : F="$HOME/Library/Mobile Documents/27N4MQEA55~pro~writer/Documents/note
             -o "window.dimensions={columns=100,lines=32}" \
             -o "window.position={x=$px,y=$py}" \
             -e nvim -n -c "normal G" -c "nnoremap <silent> <Esc> :wq<CR>" -c startinsert! "$F"
+shift + alt - n : open -a Things3; /opt/homebrew/bin/yabai -m space --focus 10
 shift + alt - m : osascript -e 'tell app "System Events" to tell appearance preferences to set dark mode to not dark mode'
 shift + alt - y : /opt/homebrew/bin/yabai --restart-service
+alt - r : ~/.config/skhd/scripts/toggle_rotation.sh
